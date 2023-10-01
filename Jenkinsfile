@@ -10,6 +10,11 @@ pipeline {
             choices: ['dev','prod'],
             description: 'Select the environment to apply Terraform code'
         )
+        booleanParam(
+            name: 'DESTROY',
+            defaultValue: false,
+            description: 'Check to destroy the infrastructure'
+        )
     }
 
     stages {
@@ -19,10 +24,9 @@ pipeline {
                 script {
                     // Determine the Terraform workspace based on the selected environment
                     def terraformWorkspace = "${params.ENVIRONMENT}"
-                    dir('.') {
-                        sh "terraform init"
-                        sh "terraform workspace select ${terraformWorkspace} || terraform workspace new ${terraformWorkspace}"
-                    }
+                    sh "terraform init"
+                    sh "terraform workspace select ${terraformWorkspace} || terraform workspace new ${terraformWorkspace}"
+                
                 }
             }
         }
@@ -31,9 +35,18 @@ pipeline {
             steps {
                 script {
                     def tfvarsfile = "${params.ENVIRONMENT}.tfvars"
-                    dir('.') {
-                        sh "terraform apply -auto-approve -var-file=${tfvarsfile}"
-                    }
+                    sh "terraform apply -auto-approve -var-file=${tfvarsfile}"
+                }
+            }
+        }
+         stage('Terraform Destroy') {
+            when {
+                expression { params.DESTROY }
+            }
+            steps {
+                script {
+                    def tfvarsfile = "${params.ENVIRONMENT}.tfvars"
+                    sh "terraform destroy -auto-approve -var-file=${tfvarsfile}"
                 }
             }
         }
