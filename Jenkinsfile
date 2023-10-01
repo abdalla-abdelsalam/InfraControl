@@ -13,12 +13,6 @@ pipeline {
     }
 
     stages {
-        stage("Clone Repository")
-        {
-            steps{
-                git branch: 'main', url: 'https://github.com/abdalla-abdelsalam/terraform-repo'
-            }
-        }
 
         stage('Terraform Init') {
             steps {
@@ -38,7 +32,7 @@ pipeline {
                 script {
                     def tfvarsfile = "${params.ENVIRONMENT}.tfvars"
                     dir('.') {
-                        sh "terraform apply -auto-approve -var-file=${tfvarsFile}"
+                        sh "terraform apply -auto-approve -var-file=${tfvarsfile}"
                     }
                 }
             }
