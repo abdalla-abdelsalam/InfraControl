@@ -60,4 +60,17 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            archiveArtifacts artifacts: 'inventory', allowEmptyArchive: true
+
+            script {
+
+                def filePath = 'inventory'
+                def fileContents = readFile(file: filePath)
+                echo "the ip of the bastion host is :\n${fileContents}"
+            }
+        }
+    }
+    
 }
