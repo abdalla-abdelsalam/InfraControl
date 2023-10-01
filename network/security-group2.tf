@@ -1,18 +1,18 @@
 resource "aws_security_group" "sg2" {
-  vpc_id      = module.mynetwork.vpc_id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [module.mynetwork.vpc_cidr]
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   ingress {
     from_port   = 3000
     to_port     = 3000
     protocol    = "tcp"
-    cidr_blocks = [module.mynetwork.vpc_cidr]
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   egress {
@@ -27,4 +27,3 @@ resource "aws_security_group" "sg2" {
   }
 }
 
-#[aws_vpc.main-vpc.cidr_block]

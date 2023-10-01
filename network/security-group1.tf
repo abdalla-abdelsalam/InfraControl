@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg1" {
-  vpc_id      = module.mynetwork.vpc_id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port   = 22

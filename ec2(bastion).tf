@@ -3,9 +3,9 @@ resource "aws_instance" "bastion_instance" {
   ami           = var.ami_id
   instance_type = var.instance_type
 
-  subnet_id = module.mynetwork.pub_subnets[0].id
+  subnet_id = module.network.pub_subnets[0].id
 
-  vpc_security_group_ids = [aws_security_group.sg1.id]
+  vpc_security_group_ids = [module.network.sg1.id]
 
   key_name = aws_key_pair.terraform-key2.id
 

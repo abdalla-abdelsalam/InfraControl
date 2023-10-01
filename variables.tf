@@ -1,4 +1,4 @@
-variable "cidr" {
+variable "cidr_block" {
   type = string
   description = "this is cidr block for vpc"
 }
@@ -11,15 +11,15 @@ variable "instance_type" {
   type = string
 }
 
-variable "sub_pub" {
+variable "subnets_pub_cidr" {
   type = list(any)
 }
 
-variable "azs" {
+variable "subnets_azs" {
   type = list(any)
 }
 
-variable "sub_priv" {
+variable "subnets_priv_cidr" {
   type = list(any)
 }
 

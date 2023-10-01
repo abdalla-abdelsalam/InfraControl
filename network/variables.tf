@@ -3,7 +3,7 @@ variable "cidr" {
   description = "this is cidr block for vpc"
 }
 
-variable "sub_pub" {
+variable "subs_pub_cidr" {
   type = list(any)
 }
 
@@ -11,6 +11,6 @@ variable "azs" {
   type = list(any)
 }
 
-variable "sub_priv" {
+variable "subs_priv_cidr" {
   type = list(any)
 }

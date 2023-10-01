@@ -14,7 +14,7 @@ resource "aws_route_table" "public-route-table" {
 
 resource "aws_route_table_association" "routeToSubnet-pubconnection" {
   count          = 2
-  subnet_id      = aws_subnet.public_subnet[count.index].id
+  subnet_id      = aws_subnet.public_subnets[count.index].id
   route_table_id = aws_route_table.public-route-table.id
 }
 
