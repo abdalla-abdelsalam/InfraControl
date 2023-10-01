@@ -39,6 +39,15 @@ pipeline {
                 }
             }
         }
+        stage('print the public_ip of bastion ec2') {
+            steps {
+                script {
+                    def pipelineName = env.JOB_NAME
+                   cat "/var/jenkins_home/workspace/${pipelineName}/inventory"
+                }
+            }
+        }
+
          stage('Terraform Destroy') {
             when {
                 expression { params.DESTROY }
