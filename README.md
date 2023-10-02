@@ -43,6 +43,7 @@ We've utilized a wide range of technologies to develop this project, including:
 *    aws s3
 *    aws lambda
 *    aws ses
+*    aws dynamodb
 *   Docker
 *   jenkins
 *    python
