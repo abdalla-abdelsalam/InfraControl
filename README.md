@@ -116,7 +116,7 @@ After creating the infrastructure, the local-exec provisioner will print the pub
 This project integrates Jenkins for continuous deployment. The Jenkins pipeline configured to accept an env-param, which determines which Terraform environment to apply changes to (dev or prod), also there is an optional param if you want to destroy the infrastructure
 ### jenkins server deployment using docker 
 
-You can use this dockerfile for building docker image that includes both jenkins server and terrform will be also installed
+You can use this dockerfile for building docker image that includes jenkins server and terrform will be also installed
 ![Screenshot from 2023-10-02 16-31-55](https://github.com/abdalla-abdelsalam/InfraControl/assets/51873396/d008a33d-971d-4214-b069-fce8bb8caa62)
 ### Jenkinsfile & stages
 #### before pipeline stages
