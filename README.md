@@ -26,7 +26,7 @@ Table of Contents
   - [Email Notifications with AWS SES](#email-notifications-with-aws-ses)
   - [lambda function](#lambda-function)
   - [Event notifiction in s3 bucket](#event-notifiction-in-s3-bucket)
-  - [Getting email notifiction](#getting-email-notifiction)
+  - [Getting an email notifiction](#getting-an-email-notifiction)
   
 
 
@@ -100,11 +100,11 @@ terraform workspace select prod
 Apply the Terraform configuration to create the infrastructure:
 
 ```bash
-    terraform apply -var-file=dev.tfvars
+terraform apply -var-file=dev.tfvars
 ```
 OR
 ```bash
-   terraform apply -var-file=prod.tfvars
+terraform apply -var-file=prod.tfvars
 ```
 
 ## Executing Local Provisioner
@@ -128,6 +128,7 @@ to jenkins server as secrets file or text
 ![Screenshot from 2023-10-02 16-39-45](https://github.com/abdalla-abdelsalam/InfraControl/assets/51873396/9bbc3068-3e8e-4ef8-9b57-d1a1ff798c91)
 
 we will reference these secrests in the jenkinsfile and expose them as environment variables to make terraform able to access aws.
+
 in the image below we also configure 2 parameters to pass to jenkins pipeline before executing :
 * environment (dev or prod)
 * bool for destroy option
@@ -151,6 +152,8 @@ This is the destroy stage (only executed if the destroy option is set to true)
 
 ### jenkins Pipeline execution 
 when applying terraform 
+![Screenshot from 2023-10-02 17-46-47](https://github.com/abdalla-abdelsalam/InfraControl/assets/51873396/69e11502-678a-435d-b1cf-f2f73cbcaa54)
+
 ![Screenshot from 2023-10-02 04-45-16](https://github.com/abdalla-abdelsalam/InfraControl/assets/51873396/34fbcda3-29cb-4b84-8bd1-903a10350dce)
 
 Getting the public ip of the bastion host
@@ -178,6 +181,6 @@ Also don't forget to give the lambda the necessary permissions to access ses ser
 Configure an S3 event notification that watches for changes to the Terraform state file in your S3 bucket. When the state file is updated, this event will automatically invoke a Lambda function, enabling real-time responses to state changes and allowing for actions like sending notifications .
 ![Screenshot from 2023-10-02 17-29-10](https://github.com/abdalla-abdelsalam/InfraControl/assets/51873396/92b0dedc-c683-4c0f-b3fe-87fc9f372994)
 
-## Getting email notifiction 
+## Getting an email notifiction 
 when an update happens to terraform state file in s3 bucket an email notificdtion sent to indicate that a change in the state happened
 ![Screenshot from 2023-10-02 05-23-48](https://github.com/abdalla-abdelsalam/InfraControl/assets/51873396/896f29cd-2b04-4a86-9c21-3dca1d7a6d64)
