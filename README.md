@@ -7,6 +7,7 @@ Table of Contents
 - [Table of Contents](#table-of-contents)
   - [Description 🧐](#description-)
   - [Technologies Used](#technologies-used)
+  - [Project Workflow](#project-workflow)
   - [Prerequisites](#prerequisites)
   - [Usage 🚀](#usage-)
     - [cloning the Project](#cloning-the-project)
@@ -47,6 +48,9 @@ We've utilized a wide range of technologies to develop this project, including:
 *   Docker
 *   jenkins
 *    python
+
+## Project Workflow
+![Blank diagram(2)](https://github.com/abdalla-abdelsalam/InfraControl/assets/51873396/d4e38dd2-a8dd-47aa-a1ef-2c4777de0126)
 ## Prerequisites
 
 Before getting started, ensure you have the following prerequisites in place:
