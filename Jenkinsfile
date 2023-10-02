@@ -40,6 +40,8 @@ pipeline {
                     def tfvarsfile = "${params.ENVIRONMENT}.tfvars"
                     sh "terraform apply -auto-approve -var-file=${tfvarsfile}"
                 }
+                archiveArtifacts artifacts: 'inventory', allowEmptyArchive: true
+
             }
         }
         stage('Print the public ip of bastion ec2') {
@@ -47,12 +49,13 @@ pipeline {
                 expression { ! params.DESTROY }
             }
             script {
-                
-                def filePath = 'inventory'
-                def fileContents = readFile(file: filePath)
-                echo "the ip of the bastion host is :\n${fileContents}"
+                steps{
+                    def filePath = 'inventory'
+                    def fileContents = readFile(file: filePath)
+                    echo "the ip of the bastion host is :\n${fileContents}"
+                }            
             }
-            
+             
         }
 
          stage('Terraform Destroy') {
@@ -70,12 +73,10 @@ pipeline {
     }
     post {
         success {
-            when {
-                expression { !params.DESTROY }
-            }
-            archiveArtifacts artifacts: 'inventory', allowEmptyArchive: true
-
-            
+            echo "Build succeeded!"
+        }
+        failure {
+            echo "Build failed!"
         }
     }
     
