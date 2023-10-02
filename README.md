@@ -1,13 +1,13 @@
-#  InfraControl
+#  InfraControl 🐱‍🏍
 
 Table of Contents
 ==================
 
-- [InfraControl](#infracontrol)
+- [InfraControl 🐱‍🏍](#infracontrol-)
 - [Table of Contents](#table-of-contents)
   - [Description 🧐](#description-)
   - [Prerequisites](#prerequisites)
-  - [Usage](#usage)
+  - [Usage 🚀](#usage-)
     - [cloning the Project](#cloning-the-project)
     - [Terraform Backend Initializing](#terraform-backend-initializing)
     - [Initialize Terraform in the project directory](#initialize-terraform-in-the-project-directory)
@@ -46,7 +46,7 @@ Before getting started, ensure you have the following prerequisites in place:
 * AWS SES configured for sending email notifications (if applicable).
 * Jenkins server with necessary plugins (if applicable).
 
-## Usage
+## Usage 🚀
 ### cloning the Project
 
 1. Clone this repository to your Jenkins server or local machine:
