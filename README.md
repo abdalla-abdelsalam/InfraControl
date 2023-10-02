@@ -10,7 +10,7 @@ Table of Contents
   - [Usage](#usage)
     - [cloning the Project](#cloning-the-project)
     - [Terraform Backend Initializing](#terraform-backend-initializing)
-    - [Initialize Terraform in the project directory:](#initialize-terraform-in-the-project-directory)
+    - [Initialize Terraform in the project directory](#initialize-terraform-in-the-project-directory)
   - [Creating Workspaces](#creating-workspaces)
   - [Managing Variables](#managing-variables)
   - [Executing Local Provisioner](#executing-local-provisioner)
@@ -61,7 +61,7 @@ cd  InfraControl
 You can use the below script to create the necessary terraform backend (s3 bucket for storing the state and dynamodb table for state locking)
 ![Screenshot from 2023-10-02 17-22-16](https://github.com/abdalla-abdelsalam/InfraControl/assets/51873396/f315ebab-c8dd-4e4e-b8a2-ac6e8c20ab3c)
 
-### Initialize Terraform in the project directory:
+### Initialize Terraform in the project directory
 
 ```bash
 terraform init
@@ -131,10 +131,11 @@ we will reference these secrests in the jenkinsfile and expose them as environme
 
 in the image below we also configure 2 parameters to pass to jenkins pipeline before executing :
 * environment (dev or prod)
-* bool for destroy option
+* boolean for the destroying option
 ![Screenshot from 2023-10-02 16-32-30](https://github.com/abdalla-abdelsalam/InfraControl/assets/51873396/92a55549-ade2-422f-9c49-4ae4ff79a2c3)
 #### stage one
-Intializing terraform and selecting the desired workspace, also create the workspace if not exsits
+Intializing terraform and selecting the desired workspace, 
+also create the workspace if not exsits.
 ![Screenshot from 2023-10-02 16-32-56](https://github.com/abdalla-abdelsalam/InfraControl/assets/51873396/e0dbe84e-4067-4d88-9385-940b0a9d77fe)
 #### stage two 
 Terraform apply stage with passing the necessary evn variable file and also archieving the inventory file that contains the public ip of the bastian host
