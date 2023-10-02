@@ -48,8 +48,8 @@ pipeline {
             when {
                 expression { ! params.DESTROY }
             }
-            script {
-                steps{
+            steps {
+                script{
                     def filePath = 'inventory'
                     def fileContents = readFile(file: filePath)
                     echo "the ip of the bastion host is :\n${fileContents}"
