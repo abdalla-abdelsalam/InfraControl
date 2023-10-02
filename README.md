@@ -6,6 +6,7 @@ Table of Contents
 - [InfraControl 🐱‍🏍](#infracontrol-)
 - [Table of Contents](#table-of-contents)
   - [Description 🧐](#description-)
+  - [Technologies Used](#technologies-used)
   - [Prerequisites](#prerequisites)
   - [Usage 🚀](#usage-)
     - [cloning the Project](#cloning-the-project)
@@ -34,6 +35,17 @@ Table of Contents
 ## Description 🧐
 This Terraform project aims to automate the setup and management of two environments, dev and prod, across two AWS regions: us-east-1 and eu-central-1. It also integrates Jenkins for continuous deployment and also includes automation for updating a Terraform state file stored in an S3 bucket and triggering a Lambda function to send email notifications using AWS SES if any changes happen in the state files.
 
+## Technologies Used
+
+We've utilized a wide range of technologies to develop this project, including:
+
+*    terraform
+*    aws s3
+*    aws lambda
+*    aws ses
+*   Docker
+*   jenkins
+*    python
 ## Prerequisites
 
 Before getting started, ensure you have the following prerequisites in place:
