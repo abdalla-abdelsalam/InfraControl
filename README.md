@@ -119,15 +119,41 @@ Apply the Terraform configuration to create the infrastructure:
 ```bash
 terraform apply -var-file=dev.tfvars
 ```
+dev.tfvars file
+```
+cidr_block = "10.0.0.0/16"
+ami_id = "ami-053b0d53c279acc90"
+instance_type = "t2.micro"
+subnets_pub_cidr = ["10.0.1.0/24","10.0.2.0/24"]
+subnets_priv_cidr = ["10.0.3.0/24","10.0.4.0/24"]
+region = "us-east-1"
+subnets_azs = ["us-east-1a","us-east-1b"]
+```
 OR
 ```bash
 terraform apply -var-file=prod.tfvars
 ```
+prod.tfvars file
+```
+cidr_block     = "172.0.0.0/16"
+ami_id        = "ami-04e601abe3e1a910f"
+instance_type = "t2.micro"
+subnets_pub_cidr = ["172.0.1.0/24", "172.0.2.0/24"]
+subnets_priv_cidr = ["172.0.3.0/24", "172.0.4.0/24"]
+region        = "eu-central-1"
+subnets_azs   = ["eu-central-1a", "eu-central-1b"]
+
+```
 
 ## Executing Local Provisioner
 
-After creating the infrastructure, the local-exec provisioner will print the public IP of the Bastion EC2 instance in the specified environment. This is automatically done as part of the Terraform apply process.
+After creating the infrastructure, the local-exec provisioner will print the public IP of the Bastion EC2 instance in the specified environment and saving the value into an inventory file. This is automatically done as part of the Terraform apply process.
 
+```
+  provisioner "local-exec" {
+    command = "echo ${self.public_ip} > inventory"
+  }
+```
 ## Jenkins Integration
 
 This project integrates Jenkins for continuous deployment. The Jenkins pipeline configured to accept an env-param, which determines which Terraform environment to apply changes to (dev or prod), also there is an optional param if you want to destroy the infrastructure
@@ -135,6 +161,14 @@ This project integrates Jenkins for continuous deployment. The Jenkins pipeline 
 
 You can use this dockerfile for building docker image that includes jenkins server and terrform will be also installed
 ![Screenshot from 2023-10-02 16-31-55](https://github.com/abdalla-abdelsalam/InfraControl/assets/51873396/d008a33d-971d-4214-b069-fce8bb8caa62)
+Run the follwoing command to build the image
+```
+docker build -t jenkins-with-terraform .
+```
+Run the following command to start a container from the image
+```
+docker run -d -p 8080:8080 -p 50000:50000 --name jenkins-with-terraform jenkins-with-terraform
+```
 ### Jenkinsfile & stages
 #### before pipeline stages
 you should add aws credentials that includes:
