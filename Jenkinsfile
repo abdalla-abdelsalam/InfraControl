@@ -32,6 +32,9 @@ pipeline {
         }
 
         stage('Terraform Apply') {
+            when {
+                expression { !params.DESTROY }
+            }
             steps {
                 script {
                     def tfvarsfile = "${params.ENVIRONMENT}.tfvars"
@@ -48,16 +51,21 @@ pipeline {
                 script {
                     def tfvarsfile = "${params.ENVIRONMENT}.tfvars"
                     sh "terraform destroy -auto-approve -var-file=${tfvarsfile}"
+                    sh "rm inventory"
+
                 }
             }
         }
     }
     post {
         success {
+            when {
+                expression { !params.DESTROY }
+            }
             archiveArtifacts artifacts: 'inventory', allowEmptyArchive: true
 
             script {
-
+                
                 def filePath = 'inventory'
                 def fileContents = readFile(file: filePath)
                 echo "the ip of the bastion host is :\n${fileContents}"
