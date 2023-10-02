@@ -1,14 +1,16 @@
-# infrastructure-as-code
+#  InfraControl
+
 Table of Contents
 ==================
 
-- [infrastructure-as-code](#infrastructure-as-code)
+- [InfraControl](#infracontrol)
 - [Table of Contents](#table-of-contents)
   - [Description 🧐](#description-)
   - [Prerequisites](#prerequisites)
   - [Usage](#usage)
     - [Initializing the Project](#initializing-the-project)
-- [OR](#or)
+    - [OR](#or)
+  
 
 
 
@@ -22,7 +24,8 @@ Before getting started, ensure you have the following prerequisites in place:
 * Terraform installed on your Jenkins server.
 * AWS CLI configured with necessary credentials and permissions.
 * S3 bucket for storing Terraform state files.
-* dynamodb talbe con
+* dynamodb talbe configured for stat lock
+* AWS lambda configured for using ses service.
 * AWS SES configured for sending email notifications (if applicable).
 * Jenkins server with necessary plugins (if applicable).
 
@@ -33,7 +36,9 @@ Before getting started, ensure you have the following prerequisites in place:
 ```bash
 git clone https://github.com/yourusername/terraform-project.git
 ```
+```bash
 cd terraform-project
+```
 
 Initialize Terraform in the project directory:
 
@@ -65,10 +70,9 @@ Creating the Infrastructure
 
     Select the appropriate workspace for the environment you want to create:
 
-    csharp
 
 terraform workspace select dev
-# OR
+### OR
 terraform workspace select prod
 
 Apply the Terraform configuration to create the infrastructure:

@@ -10,7 +10,7 @@ resource "aws_instance" "application_instance" {
   key_name = aws_key_pair.terraform-key2.id
 
   tags = {
-    Name = "application_instance"
+    Name = "Application_instance"
   }
 
 }
